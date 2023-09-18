@@ -1,0 +1,18 @@
+{
+  "/evitarCors/**": {
+    "target": "https://example.com/",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+        "^/evitarCors/": ""
+    }
+  },
+  "/domain/**": {
+    "target": "https://domain-a.com",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+        "^/evitarCors/": ""
+    }
+  }
+}

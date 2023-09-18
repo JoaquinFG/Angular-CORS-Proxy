@@ -12,8 +12,8 @@ export class AppComponent {
   title = 'Angular-CORS';
   constructor(private http: HttpClient) {}
 
-  hacerPeticion() {
-    this.http.get('https://example.com')
+  domain() {
+    this.http.get('https://domain-a.com')
       .pipe(
         catchError(error => {
           console.log('Error al hacer la petición:', error.message);
@@ -29,6 +29,23 @@ export class AppComponent {
         }
       });
   }
-  
+
+  domainNoCors() {
+    this.http.get('/domain')
+      .pipe(
+        catchError(error => {
+          console.log('Error al hacer la petición:', error.message);
+          if (error instanceof HttpErrorResponse && error.status === 0) {
+            console.log('Posiblemente sea un error CORS.');
+          }
+          return of(null);
+        })
+      )
+      .subscribe(data => {
+        if (data) {
+          console.log(data);
+        }
+      });
+  }
   
 }
